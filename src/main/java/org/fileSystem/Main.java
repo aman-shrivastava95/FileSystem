@@ -9,7 +9,6 @@ import org.fileSystem.models.FileSystemNodeType;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
         String path = "/Users/Aman/Documents/personal/test.java" ;
         FileSystem fs = new FileSystemImpl() ;
         FileSystemNode javaFile = fs.createFile(path, FileSystemNodeType.FILE, 10L);
