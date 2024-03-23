@@ -8,7 +8,7 @@ public class FileSystemImpl implements FileSystem{
     FileSystemNode root ;
 
     public FileSystemImpl(){
-        root = new FileSystemNode("/", 0L, FileSystemNodeType.DIRECTORY);
+        root = new FileSystemNode("/", 0L, FileSystemNodeType.DIRECTORY, null);
     }
 
     @Override
@@ -20,8 +20,12 @@ public class FileSystemImpl implements FileSystem{
             FileSystemNodeType newNodeType = isLeaf ? fileType : FileSystemNodeType.DIRECTORY ;
             String nodeName = nodes[i] ;
             assert curNode != null;
-            curNode = curNode.getChildren().computeIfAbsent(nodeName, k -> new FileSystemNode(nodeName, 0L, newNodeType));
+            FileSystemNode parentRef = curNode ;
+            curNode = curNode.getChildren().computeIfAbsent(nodeName, k -> new FileSystemNode(nodeName, 0L, newNodeType, null));
             curNode.setSize(curNode.getSize() + size);
+            if (curNode.getParent() == null){
+                curNode.setParent(parentRef);
+            }
         }
         return curNode;
     }

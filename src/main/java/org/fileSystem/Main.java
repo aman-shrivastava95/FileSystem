@@ -22,11 +22,5 @@ public class Main {
 
         System.out.println("personal directory size: "+ personalDirectory.getSize());
         System.out.println("Documents directory size: "+ documentsDirectory.getSize());
-
-
-
-
-
-
     }
 }
